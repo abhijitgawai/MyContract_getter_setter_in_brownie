@@ -1,18 +1,29 @@
-from brownie import Wei, reverts, accounts, chain, MyContract
+from brownie import Wei, reverts, accounts, chain, OwnerTransfer
 
-def test_name(isolation, owner, MyContract):
+def test_name(isolation, owner, alice, OwnerTransfer, bob):
 
-    # Defining Things
-    myContarctObject = MyContract[-1]
-    print(myContarctObject.address)
+    contractObject  = OwnerTransfer[-1]
 
-    print(myContarctObject.get())
+    assert contractObject.variable() == 0 # 1st test case
 
-    # Test Case
-    assert myContarctObject.get() == 'MyValueDefault' # 1st test case
+    assert contractObject.owner() == owner.address
 
-    # Acting
-    myContarctObject.set("MySecondValue", {"from":owner})
+    contractObject.IsOwner(4, {"from":owner})
 
-    # Test Case
-    assert myContarctObject.get() == 'MyValueDefault' # 2nd test case
+    assert contractObject.variable() == 4
+
+    contractObject.transferOwnership(alice , {"from":owner})
+
+    assert contractObject.owner() == alice.address
+
+    # Expecting an error
+    with reverts("Ownable: caller is not the owner"):
+        contractObject.transferOwnership(alice , {"from":bob})
+
+    assert False
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 import pytest
 from brownie import accounts, Wei, chain
-from brownie import (MyContract)
+from brownie import (OwnerTransfer)
 from scripts.utils.helpful_scripts import *
 
 @pytest.fixture(scope="module", autouse="True")
@@ -45,6 +45,5 @@ def users():
 
 @pytest.fixture(scope="module", autouse=True)
 def deploy(owner, alice, bob, katy, lauren, charlie):
-    owner =  accounts[1]
-    newContarctAddress = MyContract.deploy({"from":owner})
+    newContarctAddress = OwnerTransfer.deploy({"from":owner})
     print(newContarctAddress)

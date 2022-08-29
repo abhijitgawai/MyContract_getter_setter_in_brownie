@@ -1,14 +1,14 @@
 from dis import Bytecode
 from brownie import accounts, Wei, chain, network
-from brownie import (MyContract)
+from brownie import (OwnerTransfer)
 from pyrsistent import s
 from scripts.utils.helpful_scripts import *
 from web3 import HTTPProvider, Web3
 
 
-owner = accounts[0]
-my_address = accounts[0].address
-chain_id = 80001
+# owner = accounts[0]
+# my_address = accounts[0].address
+# chain_id = 80001
 w3 = Web3(Web3.HTTPProvider(''))
 
 
@@ -57,7 +57,7 @@ def set_params(contract, *args):
 
 def deploy_eth():
     owner =  accounts[1]
-    newContarctAddress = MyContract.deploy({"from":owner})
+    newContarctAddress = OwnerTransfer.deploy({"from":owner})
     print(newContarctAddress)
 
 

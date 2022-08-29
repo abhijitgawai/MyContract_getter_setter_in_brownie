@@ -1,17 +1,7 @@
 {
   "contracts": {
-    "MyContract": "e91e4316222987a9cef584c3109e75ba215207eb"
+    "OwnerTransfer": "1e0fad5c2d38e1c06d1d0ecf2caca40d0cc55292"
   },
-  "tests": {
-    "tests/staking_interface/test_staking_interface.py": {
-      "coverage": false,
-      "isolated": [
-        "MyContract"
-      ],
-      "results": ".",
-      "sha1": "2e7f2b58653ca87bbd5adcb1df1578e62496a3bb",
-      "txhash": []
-    }
-  },
+  "tests": {},
   "tx": {}
 }
